@@ -1,8 +1,8 @@
 # sitelabs-graph-ui
 
 A read-only web page for a graph server: run openCypher queries, and see the answer as a table, in 3D,
-in 2D or as JSON. Used by [sitelabs-graph-database-conda](https://github.com/thompson42/sitelabs-graph-database-conda)
-and [sitelabs-partitioned-graph](https://github.com/thompson42/sitelabs-partitioned-graph).
+in 2D or as JSON. Used by [sitelabs-graph-database-conda](https://github.com/sitelabs-com/sitelabs-graph-database-conda)
+and [sitelabs-partitioned-graph](https://github.com/sitelabs-com/sitelabs-partitioned-graph).
 
 > **For:** developers of the page, and of a server that serves it. **You'll find:** what it does, how a
 > project uses it, what a server must provide, how big a graph is worth drawing, and how to test it.

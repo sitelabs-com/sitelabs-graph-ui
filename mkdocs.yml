@@ -1,0 +1,32 @@
+site_name: Sitelabs-Graph-UI Technical Documentation
+site_url: https://sitelabs-com.github.io/sitelabs-graph-ui/
+repo_url: https://github.com/sitelabs-com/sitelabs-graph-ui
+theme:
+  name: readthedocs
+  navigation_depth: 3 # How many levels of subheadings appear in the sidebar
+  collapse_navigation: true # Collapse sections that aren't currently active
+  titles_only: false # Show page subheadings (H2, H3) inside the sidebar
+extra_css:
+  - stylesheets/extra.css
+hooks:
+  - mkdocs_hooks.py # leaves each page's own menu block out of the site
+
+# Written by `python tools/docs.py` from GROUPS in tools/docs.py (the docs' own menu): edit those, not this.
+nav:
+  - Features:
+      - Features: features.md
+  - Using the page:
+      - Overview: using.md
+      - Graph views: graph-views.md
+  - Serving it:
+      - Overview: serving.md
+      - Server contract: server-contract.md
+      - Installing into a project: installing.md
+  - Development:
+      - Overview: development.md
+      - Tests: testing.md
+      - How big a graph: graph-size.md
+  - Security:
+      - Overview: security.md
+  - References:
+      - All documents: index.md

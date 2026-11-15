@@ -6,6 +6,9 @@ and [sitelabs-partitioned-graph](https://github.com/sitelabs-com/sitelabs-partit
 
 > **For:** developers of the page, and of a server that serves it. **You'll find:** what it does, how a
 > project uses it, what a server must provide, how big a graph is worth drawing, and how to test it.
+>
+> **The full documentation** is in [docs/](docs/index.md), and as a site at
+> <https://sitelabs-com.github.io/sitelabs-graph-ui/>.
 
 It is one page and two libraries, with nothing to build and nothing fetched from the internet, so it
 works on a private network. The query box's highlighting and completion are its own, about 100 lines:

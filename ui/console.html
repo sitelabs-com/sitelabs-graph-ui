@@ -9,19 +9,19 @@
 :root {
   --bg: #f7f7f5; --panel: #ffffff; --text: #1d1d1b; --muted: #6b6b66; --line: #deddd8;
   --accent: #2f5fd0; --accent-text: #ffffff; --error: #b3261e; --code: #f0efea;
-  --node: #2f5fd0; --node2: #c2571a; --node3: #2d8a4e; --node4: #8a3fb8; --node5: #b3261e; --node6: #0f7f8c; --edge: #9b9a94;
+  --node: #2f5fd0; --node2: #c2571a; --node3: #2d8a4e; --node4: #8a3fb8; --node5: #b3261e; --node6: #0f7f8c; --relationship: #9b9a94;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #161615; --panel: #1f1f1d; --text: #ecebe6; --muted: #a09f99; --line: #3a3a37;
     --accent: #7ea2ff; --accent-text: #10131a; --error: #ff8a80; --code: #2a2a27;
-    --node: #7ea2ff; --node2: #f0955a; --node3: #6cc98e; --node4: #c38ef0; --node5: #ff8a80; --node6: #5cc9d6; --edge: #77766f;
+    --node: #7ea2ff; --node2: #f0955a; --node3: #6cc98e; --node4: #c38ef0; --node5: #ff8a80; --node6: #5cc9d6; --relationship: #77766f;
   }
 }
 :root[data-theme="dark"] {
   --bg: #161615; --panel: #1f1f1d; --text: #ecebe6; --muted: #a09f99; --line: #3a3a37;
   --accent: #7ea2ff; --accent-text: #10131a; --error: #ff8a80; --code: #2a2a27;
-  --node: #7ea2ff; --node2: #f0955a; --node3: #6cc98e; --node4: #c38ef0; --node5: #ff8a80; --node6: #5cc9d6; --edge: #77766f;
+  --node: #7ea2ff; --node2: #f0955a; --node3: #6cc98e; --node4: #c38ef0; --node5: #ff8a80; --node6: #5cc9d6; --relationship: #77766f;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -100,8 +100,8 @@ pre { padding: 10px; overflow: auto; font-size: 12px; margin: 0; }
   <aside>
     <div id="totals" class="muted">Loading the schema…</div>
     <h2>Labels</h2><ul id="labels"></ul>
-    <h2 data-needs="schema">Vertex types</h2><ul id="vtypes"></ul>
-    <h2>Relationship types</h2><ul id="etypes"></ul>
+    <h2 data-needs="schema">Node types</h2><ul id="ntypes"></ul>
+    <h2>Relationship types</h2><ul id="rtypes"></ul>
     <h2>History <button id="clearhistory" hidden>Clear</button></h2><ul id="history"></ul>
   </aside>
   <section>
@@ -205,11 +205,11 @@ async function loadSchema() {
   try {
     if (features.schema) {
       const s = await call("GET", "/schema");
-      $("totals").textContent = `${s.vertices.toLocaleString()} vertices, ${s.edges.toLocaleString()} edges, load ${s.load}`;
+      $("totals").textContent = `${s.nodes.toLocaleString()} nodes, ${s.relationships.toLocaleString()} relationships, load ${s.load}`;
       $("labels").replaceChildren(...s.labels.map((l) => schemaItem(l.name, l.count, nodesQuery(l.name))));
-      $("vtypes").replaceChildren(...s.vertex_types.map((t) => schemaItem(t.name, t.count, nodesQuery(t.name), t.properties)));
-      $("etypes").replaceChildren(...s.edge_types.map((t) => schemaItem(t.name, t.count, relsQuery(t.name), t.properties)));
-      known = [...s.labels.map((l) => l.name), ...s.edge_types.map((t) => t.name)];
+      $("ntypes").replaceChildren(...s.node_types.map((t) => schemaItem(t.name, t.count, nodesQuery(t.name), t.properties)));
+      $("rtypes").replaceChildren(...s.relationship_types.map((t) => schemaItem(t.name, t.count, relsQuery(t.name), t.properties)));
+      known = [...s.labels.map((l) => l.name), ...s.relationship_types.map((t) => t.name)];
       return;
     }
     const names = async (procedure, field) => (await call("POST", "/opencypher",
@@ -217,7 +217,7 @@ async function loadSchema() {
     const [labels, types] = await Promise.all([names("db.labels", "label"), names("db.relationshipTypes", "relationshipType")]);
     $("totals").textContent = "Labels and relationship types";
     $("labels").replaceChildren(...labels.map((l) => schemaItem(l, undefined, nodesQuery(l))));
-    $("etypes").replaceChildren(...types.map((t) => schemaItem(t, undefined, relsQuery(t))));
+    $("rtypes").replaceChildren(...types.map((t) => schemaItem(t, undefined, relsQuery(t))));
     known = [...labels, ...types];
   } catch (e) { $("totals").textContent = "The schema: " + e.message; }
 }
@@ -348,7 +348,7 @@ function collect(cap) {
 }
 function tokens() {
   const css = getComputedStyle(document.documentElement), get = (k) => css.getPropertyValue(k).trim();
-  return {panel: get("--panel"), edge: get("--edge"), muted: get("--muted"),
+  return {panel: get("--panel"), relationship: get("--relationship"), muted: get("--muted"),
           nodes: ["--node", "--node2", "--node3", "--node4", "--node5", "--node6"].map(get)};
 }
 function closeView() {
@@ -429,7 +429,7 @@ async function draw(kind) {
   describe(kind, found, "Laying it out…");
   view = new Graph(stage).width(stage.clientWidth).height(stage.clientHeight)
     .backgroundColor(theme.panel).nodeId("id").nodeColor("color").nodeVal((x) => (x.expanded ? 3 : 1))
-    .nodeLabel((x) => esc(title(x))).linkLabel((x) => esc(x.type)).linkColor(() => theme.edge)
+    .nodeLabel((x) => esc(title(x))).linkLabel((x) => esc(x.type)).linkColor(() => theme.relationship)
     .linkDirectionalArrowLength(big ? 0 : 3).linkDirectionalArrowRelPos(1)
     .cooldownTicks(big ? 120 : 300).onNodeClick(showDetails);
   if (kind === "g3d") view.showNavInfo(false).nodeResolution(big ? 4 : 8).linkOpacity(big ? 0.25 : 0.5);

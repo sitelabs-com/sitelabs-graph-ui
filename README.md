@@ -59,8 +59,9 @@ Each is about 30 lines in the projects' `app/routers/console.py`.
 | `id(a) = $id` in a `WHERE` | Expanding finds a node by it |
 | `offset N` in a syntax error's message | Optional: where the page marks the error |
 
-With `schema`: `GET /schema`. With `pages`: `page_size` in the request, `cursor` in the answer, and `GET
-/opencypher/cursors/{cursor}`. With `profile`: `profile` in the request and answer. With `past`:
+With `schema`: `GET /schema`, answering `{"load", "nodes", "relationships", "labels", "node_types",
+"relationship_types"}` (each type: `name`, `count`, `properties`). With `pages`: `page_size` in the
+request, `cursor` in the answer, and `GET /opencypher/cursors/{cursor}`. With `profile`: `profile` in the request and answer. With `past`:
 `at_load`. With `cancel`: `DELETE /queries/{X-Request-ID}`.
 
 The policy: `default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src

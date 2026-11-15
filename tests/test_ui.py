@@ -64,8 +64,8 @@ class Backend(http.server.BaseHTTPRequestHandler):
         if self.path.startswith("/console/vendor/"):
             return self.answer((I.UI / "vendor" / self.path.rsplit("/", 1)[1]).read_bytes(), kind="text/javascript")
         if self.path == "/schema":
-            return self.answer({"load": 1, "vertices": 2, "edges": 1, "labels": [{"name": "Person", "count": 2}],
-                                "vertex_types": [], "edge_types": [{"name": "KNOWS", "count": 1}]})
+            return self.answer({"load": 1, "nodes": 2, "relationships": 1, "labels": [{"name": "Person", "count": 2}],
+                                "node_types": [], "relationship_types": [{"name": "KNOWS", "count": 1}]})
         self.answer({"error": "not here"}, 404)
 
     def do_POST(self):

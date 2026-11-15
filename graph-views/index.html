@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sitelabs-com.github.io/sitelabs-graph-ui/graph-views/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Graph views - Sitelabs-Graph-UI Technical Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Graph views";
+        var mkdocs_page_input_path = "graph-views.md";
+        var mkdocs_page_url = "/sitelabs-graph-ui/graph-views/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Sitelabs-Graph-UI Technical Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/">Features</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Using the page</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../using/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Graph views</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-drawn">What is drawn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#moving-round">Moving round</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-size-limit">The size limit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#expanding-a-node">Expanding a node</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Serving it</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../serving/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../server-contract/">Server contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installing/">Installing into a project</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Tests</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-size/">How big a graph</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">All documents</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Sitelabs-Graph-UI Technical Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Using the page</li>
+      <li class="breadcrumb-item active">Graph views</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/edit/master/docs/graph-views.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="graph-views">Graph views</h1>
+<blockquote>
+<p><strong>For:</strong> anyone drawing an answer. <strong>You'll find:</strong> what the 3D and 2D views draw and how, moving
+round them, the size limit, and expanding a node to explore.</p>
+</blockquote>
+<h2 id="what-is-drawn">What is drawn</h2>
+<p>The <strong>3D</strong> tab uses <a href="https://github.com/vasturiano/3d-force-graph">3d-force-graph</a> (three.js, WebGL),
+the <strong>2D</strong> tab <a href="https://github.com/vasturiano/force-graph">force-graph</a> (a canvas). Each is loaded from
+<code>/console/vendor/</code> the first time its tab opens, so a page that only shows tables never loads them.</p>
+<p>The page looks through every value of every row, including lists and maps inside them, for:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Recognised by</th>
+<th>Drawn as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A node</td>
+<td><code>id</code>, <code>labels</code> and <code>properties</code></td>
+<td>A dot, coloured by its first label</td>
+</tr>
+<tr>
+<td>A relationship</td>
+<td><code>id</code>, <code>type</code>, <code>start</code> and <code>end</code></td>
+<td>A line with an arrow, start to end</td>
+</tr>
+<tr>
+<td>A path</td>
+<td><code>nodes</code> and <code>relationships</code></td>
+<td>Its nodes and relationships</td>
+</tr>
+</tbody>
+</table>
+<p>So <code>RETURN n</code>, <code>RETURN a, r, b</code>, <code>RETURN p</code> and <code>RETURN collect(n)</code> all draw. A query that returns only
+properties (<code>RETURN n.name</code>) has nothing to draw, and the view says so.</p>
+<p><strong>A relationship whose ends the answer didn't return</strong> is drawn with grey placeholders for them, and
+the line above the graph counts them ("ends not in the answer"). Return the nodes too
+(<code>RETURN a, r, b</code>) to see them properly.</p>
+<p>Six colours go round the labels in the order they are met; the legend below the graph says which is
+which.</p>
+<h2 id="moving-round">Moving round</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>3D</th>
+<th>2D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drag the background</td>
+<td>Turn</td>
+<td>Pan</td>
+</tr>
+<tr>
+<td>Scroll</td>
+<td>Zoom</td>
+<td>Zoom</td>
+</tr>
+<tr>
+<td>Drag a node</td>
+<td>Move it</td>
+<td>Move it</td>
+</tr>
+<tr>
+<td>Hover</td>
+<td>Its labels, and its <code>name</code> or <code>title</code></td>
+<td>The same</td>
+</tr>
+<tr>
+<td>Click a node</td>
+<td>Everything about it, in a panel</td>
+<td>The same</td>
+</tr>
+</tbody>
+</table>
+<p>When the layout settles, the view zooms to fit. Switching tab or theme draws it again. Leaving a graph
+tab stops the drawing, so it doesn't keep the GPU busy. 3D needs WebGL; without it the tab says to use
+2D.</p>
+<h2 id="the-size-limit">The size limit</h2>
+<p><strong>Draw up to</strong> sets the most nodes drawn: 100, 500, <strong>1,000</strong> (the default), 2,000, 5,000 or 10,000.
+The line above the graph says how many of how many nodes and relationships are drawn, and gives advice
+past the sizes that stop being readable:</p>
+<ul>
+<li>over <strong>500</strong> nodes: narrow the query (labels, properties, <code>LIMIT</code>);</li>
+<li>over <strong>2,000</strong> in 3D: 3D is slow at this size, try 2D.</li>
+</ul>
+<p>Past 1,000 nodes the views draw less to keep up: no arrows, a shorter layout, and in 3D coarser dots
+and fainter lines. The numbers behind these limits are in <a href="../graph-size/">How big a graph</a>.</p>
+<p>With <code>pages</code>, an answer may have more rows than were fetched. <strong>Fetch more rows to draw</strong> fetches pages
+of 5,000 until there are ten times the limit (enough for the nodes and most of their relationships), or
+none are left.</p>
+<h2 id="expanding-a-node">Expanding a node</h2>
+<p>To explore a graph too big to draw, start small and grow it:</p>
+<ol>
+<li>Run a query for one node or a few, for example
+   <code>MATCH (p:Person {name: $name}) RETURN p</code>.</li>
+<li>Open <strong>3D</strong> or <strong>2D</strong>, and click a node.</li>
+<li>
+<p>Click <strong>Expand neighbours</strong>. The page sends:</p>
+<p><code>cypher
+MATCH (a)-[r]-(b) WHERE id(a) = $id RETURN a, r, b LIMIT 100</code></p>
+<p>with the node's id, read-only, and adds what comes back beside it. The node is drawn larger, and
+the button says <strong>Expanded</strong>.
+4. Click a new node and expand it, and so on.</p>
+</li>
+</ol>
+<p>What was expanded:</p>
+<ul>
+<li><strong>is always drawn</strong>, whatever the size limit: it was asked for by hand;</li>
+<li><strong>stays</strong> when you switch between 3D and 2D;</li>
+<li><strong>goes</strong> with the next query, or with <strong>Back to the answer</strong>.</li>
+</ul>
+<p>A node with more than 100 relationships shows its first 100, and says so.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../using/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../serving/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../using/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../serving/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

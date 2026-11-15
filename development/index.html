@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sitelabs-com.github.io/sitelabs-graph-ui/development/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Overview - Sitelabs-Graph-UI Technical Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overview";
+        var mkdocs_page_input_path = "development.md";
+        var mkdocs_page_url = "/sitelabs-graph-ui/development/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Sitelabs-Graph-UI Technical Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/">Features</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Using the page</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../using/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-views/">Graph views</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Serving it</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../serving/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../server-contract/">Server contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installing/">Installing into a project</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Overview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-repository">The repository</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-the-page-is-put-together">How the page is put together</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#trying-a-change">Trying a change</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-vendored-libraries">The vendored libraries</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-docs">The docs</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Tests</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-size/">How big a graph</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">All documents</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Sitelabs-Graph-UI Technical Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Development</li>
+      <li class="breadcrumb-item active">Overview</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/edit/master/docs/development.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="development">Development</h1>
+<blockquote>
+<p><strong>For:</strong> developers of the page. <strong>You'll find:</strong> the repository's layout, how the page is put
+together, trying a change, the vendored libraries, and these docs.</p>
+</blockquote>
+<h2 id="the-repository">The repository</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/ui/console.html">ui/console.html</a></td>
+<td>The page: HTML, CSS and script in one file, no build</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/tree/main/ui/vendor">ui/vendor/</a></td>
+<td>The two graph libraries, unchanged from npm, and their licences</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/install.py">install.py</a></td>
+<td>Copies a release into a project, and checks a copy (<a href="../installing/">Installing</a>)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/VERSION">VERSION</a></td>
+<td>The release's version, written into each copy's manifest</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/tests/test_ui.py">tests/test_ui.py</a></td>
+<td>The page in a real browser against a stand-in server, and the install (<a href="../testing/">Tests</a>)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/tree/main/.github/workflows">.github/workflows/</a></td>
+<td>CI, and publishing these docs</td>
+</tr>
+<tr>
+<td><a href="../">docs/</a>, <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/mkdocs.yml">mkdocs.yml</a>, <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/mkdocs_hooks.py">mkdocs_hooks.py</a>, <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/tools/docs.py">tools/docs.py</a></td>
+<td>These docs, and their site (<a href="#the-docs">below</a>)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/LICENSE.txt">LICENSE.txt</a>, <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/NOTICES.txt">NOTICES.txt</a></td>
+<td>Apache-2.0; the libraries are MIT</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-the-page-is-put-together">How the page is put together</h2>
+<p>One file, in plain JavaScript, with no framework and no build step, so a project serves it as it is.
+The script, in order:</p>
+<ul>
+<li><strong>State:</strong> the rows, columns and cursor of the latest answer, the tab shown, the features from
+  <code>config.json</code>, and what expanding has added (<code>extra</code>).</li>
+<li><strong>Calls</strong> (<code>call()</code>): <code>fetch</code> with the key, and an error from the answer's <code>error</code> field.</li>
+<li><strong>The side panel</strong> (<code>loadSchema()</code>): from <code>GET /schema</code>, or <code>db.labels()</code> and
+  <code>db.relationshipTypes()</code>.</li>
+<li><strong>Running</strong> (<code>run()</code>): the request, the status line, a syntax error's offset.</li>
+<li><strong>The answer</strong> (<code>render()</code>, <code>showJson()</code>, <code>showProfile()</code>).</li>
+<li><strong>The graph views</strong>: <code>library()</code> loads a library on first use; <code>gather()</code> finds nodes, relationships
+  and paths anywhere in a row; <code>collect()</code> applies the size limit and adds placeholders; <code>graphData()</code>
+  keeps each node's object between updates so it keeps its place; <code>draw()</code> and <code>expand()</code>.</li>
+<li><strong>The query box</strong>: a transparent <code>&lt;textarea&gt;</code> over a <code>&lt;pre&gt;</code> holding the coloured text, kept the same
+  size and scrolled together; <code>TOKEN</code> splits the text; <code>completions()</code> finds the word before the
+  caret.</li>
+<li><strong>History</strong>, and <strong>start()</strong>: fetch <code>config.json</code>, hide what the server doesn't have
+  (<code>data-needs="..."</code> on an element), load the side panel.</li>
+</ul>
+<p><strong>Why its own query box</strong>, of about 100 lines: the usual editor libraries' language modes use a bare
+name for the language that both projects refuse, and the page would need a build to bundle one.</p>
+<p>Colours are CSS variables on <code>:root</code>, set again for dark mode; the graph views read them
+(<code>tokens()</code>) when they draw, which is why switching theme draws again.</p>
+<h2 id="trying-a-change">Trying a change</h2>
+<p>The quickest way is the tests' stand-in server, which serves the page with every feature:</p>
+<pre><code class="language-bash">python -m pytest                      # everything
+python -m pytest -k completing        # one test
+</code></pre>
+<p>To look at it by hand, serve it from a project (install your working copy into it,
+<a href="../installing/">Installing</a>), or open a test with Playwright's inspector:
+<code>PWDEBUG=1 python -m pytest -k expanding</code>.</p>
+<h2 id="the-vendored-libraries">The vendored libraries</h2>
+<p><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/ui/vendor/README.md">ui/vendor/README.md</a> lists each file's package, version, licence and SHA-256.
+To update one: download the package's tarball from registry.npmjs.org, copy <code>dist/&lt;name&gt;.min.js</code>
+here, update that table and <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/NOTICES.txt">NOTICES.txt</a> if the licence changed, run the tests, and
+raise <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/VERSION">VERSION</a>.</p>
+<p>The page uses: <code>ForceGraph3D</code> / <code>ForceGraph</code>, <code>graphData</code>, <code>nodeId</code>, <code>nodeColor</code>, <code>nodeVal</code>,
+<code>nodeLabel</code>, <code>linkLabel</code>, <code>linkColor</code>, <code>linkDirectionalArrowLength</code>, <code>linkDirectionalArrowRelPos</code>,
+<code>cooldownTicks</code>, <code>onNodeClick</code>, <code>onEngineStop</code>, <code>zoomToFit</code>, <code>width</code>, <code>height</code>, <code>backgroundColor</code>,
+<code>_destructor</code>, and in 3D <code>showNavInfo</code>, <code>nodeResolution</code> and <code>linkOpacity</code>. Check those still work
+after an update; the tests draw and click in both views.</p>
+<h2 id="the-docs">The docs</h2>
+<p>These pages are in <a href="../">docs/</a>, and published to GitHub Pages at
+<a href="https://sitelabs-com.github.io/sitelabs-graph-ui/">https://sitelabs-com.github.io/sitelabs-graph-ui/</a> by
+<a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/.github/workflows/mkdocs.yml">.github/workflows/mkdocs.yml</a> on every push to <code>main</code> that changes
+them (<code>mkdocs gh-deploy</code> to the <code>gh-pages</code> branch). It is the same set-up as
+sitelabs-partitioned-graph's.</p>
+<ul>
+<li><strong>Every page starts with a menu</strong>, for reading them on GitHub, between <code>`. [tools/docs.py](../tools/docs.py) writes it, and</code>mkdocs.yml<code>'s</code>nav<code>(the site's
+  sidebar), from its</code>GROUPS`; <a href="../sitedocs.py">docs/sitedocs.py</a> holds the sections.</li>
+<li><strong>On the site</strong>, <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/mkdocs_hooks.py">mkdocs_hooks.py</a> leaves the menu out (the sidebar is the menu),
+  and points links into the code (<code>../install.py</code>) at the file on GitHub.</li>
+</ul>
+<p>To add or move a page: write it, add it to <code>GROUPS</code> in <code>tools/docs.py</code>, and run:</p>
+<pre><code class="language-bash">python tools/docs.py                  # the menus and mkdocs.yml's nav
+python tools/docs.py --check          # what CI runs: fails if they are out of date
+</code></pre>
+<p>To see the site:</p>
+<pre><code class="language-bash">pip install -r requirements-docs.txt
+mkdocs serve                          # http://127.0.0.1:8000
+</code></pre>
+<p>Publishing needs, once, <strong>Settings → Pages → Build and deployment → Deploy from a branch: <code>gh-pages</code>,
+<code>/ (root)</code></strong> on GitHub.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installing/" class="btn btn-neutral float-left" title="Installing into a project"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../testing/" class="btn btn-neutral float-right" title="Tests">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../installing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../testing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

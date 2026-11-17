@@ -25,7 +25,8 @@ The page calls only its own server (`connect-src 'self'`), at these paths. Every
 ### `/console/config.json`
 
 ```json
-{"title": "Graph console", "schema": true, "pages": true, "profile": true, "past": true, "cancel": true}
+{"title": "Graph console", "schema": true, "pages": true, "profile": true, "past": true, "cancel": true,
+ "login": {"sso": true, "keys": true}}
 ```
 
 `title` names the page and its tab. Each other field turns on a [feature](#optional-features); a
@@ -129,4 +130,21 @@ without partitions would turn this off.
 `DELETE /queries/{id}`, with the `X-Request-ID` the query was sent with. Whatever the query's own
 request then answers (usually an error) is shown as usual; an error from the `DELETE` is shown too.
 
-sitelabs-graph-database turns every feature off; sitelabs-partitioned-graph turns every one on.
+### `login`
+
+An object, `{"sso": true, "keys": true}`: the page can sign in, and stay signed in in this browser,
+with a session cookie the server sets. The page never sees the cookie or a token.
+
+| Path | What |
+|---|---|
+| `GET /session` | Who is signed in: `{"signed_in": true, "name", "role"}`, or `{"signed_in": false}` (200 either way, so the browser logs no error) |
+| `POST /session` | With `keys`, on **Sign in with the key**: a session for the key in `X-API-Key`, set as a cookie |
+| `DELETE /session` | **Sign out**: the cookie dropped |
+| `GET /console/sso/start?next=<path>` | With `sso`, on **Sign in**: the server sends the browser to the identity provider, and back to the console signed in (or to `next`, a path on the server). A failure comes back as `/console?signin_error=<why>` |
+
+With a session, the page sends no key: queries go with the cookie. `/console?next=<path>` returns to
+`next` once signed in: a server can send a browser there from a page that needs a session, such as
+its dashboards.
+
+sitelabs-graph-database turns every feature off; sitelabs-partitioned-graph turns every one on, and `login`
+when it has keys or an identity provider.

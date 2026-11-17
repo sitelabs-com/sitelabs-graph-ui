@@ -63,12 +63,19 @@ class Backend(http.server.BaseHTTPRequestHandler):
             return self.answer(type(self).config)
         if self.path.startswith("/console/vendor/"):
             return self.answer((I.UI / "vendor" / self.path.rsplit("/", 1)[1]).read_bytes(), kind="text/javascript")
+        if self.path == "/session":
+            if "pg=1" in (self.headers.get("Cookie") or ""):
+                return self.answer({"signed_in": True, "name": "ann", "role": "read"})
+            return self.answer({"signed_in": False})
         if self.path == "/schema":
             return self.answer({"load": 1, "nodes": 2, "relationships": 1, "labels": [{"name": "Person", "count": 2}],
                                 "node_types": [], "relationship_types": [{"name": "KNOWS", "count": 1}]})
         self.answer({"error": "not here"}, 404)
 
     def do_POST(self):
+        if self.path == "/session":
+            type(self).seen.append({"session": self.headers.get("X-API-Key")})
+            return self.answer({"name": "ann", "role": "read"}, headers={"Set-Cookie": "pg=1; Path=/; HttpOnly; SameSite=Strict"})
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
         type(self).seen.append(body)
         q = body["query"]
@@ -86,6 +93,12 @@ class Backend(http.server.BaseHTTPRequestHandler):
         if q.startswith("BAD"):
             return self.answer({"error": "OpenCypherSyntaxError: expected ')' (near 'x', offset 4)"}, 400)
         self.answer({"columns": ["a", "r"], "rows": [{"a": NODE, "r": REL}], "stats": {}})
+
+
+    def do_DELETE(self):
+        if self.path == "/session":
+            return self.answer({"signed_out": True}, headers={"Set-Cookie": "pg=; Path=/; Max-Age=0"})
+        self.answer({"error": "not here"}, 404)
 
 
 def serve(config):
@@ -283,3 +296,40 @@ def test_history_keeps_the_last_queries_not_their_parameters(page):
     assert page.locator("#history li").count() == 2                      # it survives a reload
     page.click("#clearhistory")
     assert page.locator("#history li").count() == 0 and not page.is_visible("#clearhistory")
+
+
+def test_signing_in_with_the_key_and_out(browser):
+    """login (docs/server-contract.md#login): the key goes once, for a session cookie, and is then
+    forgotten; the page sends the cookie, not the key; signing out drops it."""
+    server, handler = serve({**FULL, "login": {"sso": True, "keys": True}})
+    page = browser.new_page()
+    problems = []
+    page.on("pageerror", lambda e: problems.append(str(e)))
+    try:
+        page.goto(f"http://127.0.0.1:{server.server_address[1]}/console")
+        until(page, "!document.getElementById('signin').hidden")
+        assert page.is_visible("#keysession") and not page.is_visible("#signout") and not page.is_visible("#who")
+        page.fill("#key", "the-key")
+        page.click("#keysession")
+        until(page, "!document.getElementById('who').hidden")
+        assert page.inner_text("#who") == "Signed in as ann (read)" and page.input_value("#key") == ""
+        assert {"session": "the-key"} in handler.seen and page.evaluate("localStorage.getItem('graph-ui.key')") == ""
+        assert not page.is_visible("#signin") and page.is_visible("#signout")
+        page.click("#signout")
+        until(page, "document.getElementById('who').hidden")
+        assert page.is_visible("#signin") and problems == []
+    finally:
+        page.close()
+        server.shutdown()
+
+
+def test_without_login_there_is_no_sign_in(browser):
+    server, _ = serve(FULL)
+    page = browser.new_page()
+    try:
+        page.goto(f"http://127.0.0.1:{server.server_address[1]}/console")
+        until(page, "document.querySelector('#labels li')")
+        assert not page.is_visible("#signin") and not page.is_visible("#keysession") and not page.is_visible("#who")
+    finally:
+        page.close()
+        server.shutdown()

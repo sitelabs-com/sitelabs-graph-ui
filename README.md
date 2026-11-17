@@ -33,7 +33,7 @@ the usual editor libraries' language modes use a bare name for the language that
   next query or **Back to the answer**. It sends `MATCH (a)-[r]-(b) WHERE id(a) = $id RETURN a, r, b`.
 * **Labels and types** beside the query: click one to see some of them.
 * **What a server has beyond that** shows only there: counts and properties (`schema`), paging (`pages`),
-  profiles (`profile`), reading the past (`past`) and cancelling (`cancel`).
+  profiles (`profile`), reading the past (`past`), cancelling (`cancel`), and signing in (`login`).
 
 ## Using it in a project
 
@@ -55,7 +55,7 @@ Each is about 30 lines in the projects' `app/routers/console.py`.
 | Path | What |
 |---|---|
 | `GET /console` | `ui/console.html`, with the security policy below. Needs no key: the page asks for one |
-| `GET /console/config.json` | `{"title", "schema", "pages", "profile", "past", "cancel"}`: the page's title, and which of those the server has |
+| `GET /console/config.json` | `{"title", "schema", "pages", "profile", "past", "cancel", "login"}`: the page's title, and which of those the server has |
 | `GET /console/vendor/<file>` | `ui/vendor/3d-force-graph.min.js` and `force-graph.min.js`, and no other file |
 | `POST /opencypher` | `{"query", "params", "read_only"}` answers `{"columns", "rows", "stats"}`, or `{"error"}`. With `read_only`, a write answers 400. `X-API-Key` is the key. A node is `{"id", "labels", "properties"}`, a relationship `{"id", "type", "start", "end", "properties"}`, a path `{"nodes", "relationships"}` |
 | `CALL db.labels()`, `CALL db.relationshipTypes()` | Without `schema`, the page lists labels and types with these |
@@ -65,7 +65,8 @@ Each is about 30 lines in the projects' `app/routers/console.py`.
 With `schema`: `GET /schema`, answering `{"load", "nodes", "relationships", "labels", "node_types",
 "relationship_types"}` (each type: `name`, `count`, `properties`). With `pages`: `page_size` in the
 request, `cursor` in the answer, and `GET /opencypher/cursors/{cursor}`. With `profile`: `profile` in the request and answer. With `past`:
-`at_load`. With `cancel`: `DELETE /queries/{X-Request-ID}`.
+`at_load`. With `cancel`: `DELETE /queries/{X-Request-ID}`. With `login` (`{"sso", "keys"}`): `GET`, `POST` and
+`DELETE /session`, and with `sso`, `GET /console/sso/start` (docs/server-contract.md#login).
 
 The policy: `default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src
 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'`. It refuses `eval`, and the libraries

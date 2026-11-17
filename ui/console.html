@@ -94,6 +94,10 @@ pre { padding: 10px; overflow: auto; font-size: 12px; margin: 0; }
 <header>
   <h1><span id="title">Graph console</span> <small class="muted">read-only</small></h1>
   <input id="key" type="password" placeholder="API key (if the coordinator needs one)" autocomplete="off" aria-label="API key">
+  <span id="who" class="muted" hidden></span>
+  <button id="signin" hidden title="Sign in at the identity provider">Sign in</button>
+  <button id="keysession" hidden title="Stay signed in, in this browser, with this key: the dashboards open too">Sign in with the key</button>
+  <button id="signout" hidden>Sign out</button>
   <button id="theme" title="Light or dark">◐</button>
 </header>
 <main>
@@ -607,6 +611,41 @@ $("clearhistory").onclick = () => { store("graph-ui.history", "[]"); showHistory
 highlight();
 showHistory();
 
+// signing in (features.login): a session cookie the server sets, for reading only (README: signing in)
+function nextPage() {
+  const n = new URLSearchParams(location.search).get("next") || "";
+  return n.startsWith("/") && !n.startsWith("//") ? n : "";
+}
+async function whoami() {
+  if (!features.login) return null;
+  let s = null;
+  try { const r = await fetch("/session"); if (r.ok) { const d = await r.json(); if (d.signed_in) s = d; } } catch (e) { /* not signed in */ }
+  $("who").hidden = !s;
+  $("who").textContent = s ? `Signed in as ${s.name || "?"} (${s.role})` : "";
+  $("signout").hidden = !s;
+  $("signin").hidden = !!s || !features.login.sso;
+  $("keysession").hidden = !!s || !features.login.keys;
+  return s;
+}
+$("signin").onclick = () => {
+  const n = nextPage();
+  location.assign("/console/sso/start" + (n ? "?next=" + encodeURIComponent(n) : ""));
+};
+$("keysession").onclick = async () => {
+  $("error").textContent = "";
+  if (!$("key").value) { $("error").textContent = "Type the key first"; return; }
+  try {
+    await call("POST", "/session");
+    $("key").value = ""; store("graph-ui.key", "");
+    if (nextPage()) { location.assign(nextPage()); return; }
+    await whoami(); loadSchema();
+  } catch (e) { $("error").textContent = e.message; }
+};
+$("signout").onclick = async () => {
+  try { await fetch("/session", {method: "DELETE"}); } catch (e) { /* gone already */ }
+  await whoami(); loadSchema();
+};
+
 async function start() {
   try {
     const r = await fetch("/console/config.json");
@@ -614,6 +653,10 @@ async function start() {
   } catch (e) { /* no config: the plain page */ }
   if (features.title) { document.title = features.title; $("title").textContent = features.title; }
   document.querySelectorAll("[data-needs]").forEach((el) => { el.hidden = !features[el.dataset.needs]; });
+  const s = await whoami();
+  if (s && nextPage()) { location.assign(nextPage()); return; }   // back from the identity provider
+  const failed = new URLSearchParams(location.search).get("signin_error");   // the identity provider said no
+  if (features.login && failed) $("error").textContent = "Signing in failed: " + failed;
   loadSchema();
 }
 start();

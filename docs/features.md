@@ -54,6 +54,7 @@ A server says what it has in `GET /console/config.json`, and the page shows only
 | `profile` | **Profile**: the plan, and each round of partition calls with its time and sizes |
 | `past` | **As of a past load**: reading the graph as it was after an earlier load |
 | `cancel` | **Cancel** stops the running query |
+| `login` | **Sign in** at the identity provider, or **Sign in with the key**, and stay signed in in this browser; **Sign out** |
 
 ## Around the page
 

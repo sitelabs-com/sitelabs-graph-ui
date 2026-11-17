@@ -58,6 +58,18 @@ file. Add `X-Content-Type-Options: nosniff` to both.
 * Where the server has keys that can only read, use one in the page. The page can't write with any
   key, but a key kept in a browser may leak, and a read-only one limits what it can then do elsewhere.
 
+## Signing in
+
+With `login` ([Server contract](server-contract.md#login)), the server keeps the sign-in, not the page:
+
+* **Sign in** goes to the identity provider and back, and the server exchanges the code for a token
+  itself. The browser gets a session cookie the server makes (HttpOnly, so no script can read it), not
+  the token.
+* **Sign in with the key** sends the typed key once, for a session, then clears it from the field and
+  from `localStorage`.
+* The server should make the cookie `SameSite=Strict`, and `Secure` over HTTPS, and let a session only
+  read: then another site can't use it, and a leaked one can't change the graph.
+
 ## History
 
 The history keeps the **text** of the last 50 queries in `localStorage`, not their parameters, which

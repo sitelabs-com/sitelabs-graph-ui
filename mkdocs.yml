@@ -15,6 +15,7 @@
 site_name: Sitelabs-Graph-UI Technical Documentation
 site_url: https://sitelabs-com.github.io/sitelabs-graph-ui/
 repo_url: https://github.com/sitelabs-com/sitelabs-graph-ui
+edit_uri: edit/main/docs/ # the theme's "Edit on GitHub" links (its default is master)
 theme:
   name: readthedocs
   navigation_depth: 3 # How many levels of subheadings appear in the sidebar

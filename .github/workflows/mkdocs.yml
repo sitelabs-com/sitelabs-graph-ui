@@ -1,33 +1,52 @@
-# The documentation site: built from docs/ and published to GitHub Pages (the gh-pages branch) on every
-# push to main that changes it.
+# The documentation site: built from docs/ and published to GitHub Pages (the gh-pages branch) with
+# mike, one site per release (docs/development.md#the-docs):
+#   * a push to main that changes the docs: the site of the release in VERSION ("0.4"), with the
+#     alias "latest", which the site's root sends browsers to;
+#   * a tag v*: the same, for the release it tags.
+# Servers link to the release they install (https://sitelabs-com.github.io/sitelabs-graph-ui/0.4/),
+# so their links describe the page they serve.
 name: mkdocs
 on:
   push:
     branches:
       - main
+    tags:
+      - "v*"
     paths:
       - "docs/**"
       - "mkdocs.yml"
       - "mkdocs_hooks.py"
       - "requirements-docs.txt"
+      - "VERSION"
       - ".github/workflows/mkdocs.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: docs                                   # one deploy at a time: each pushes gh-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0                        # mike adds to the gh-pages branch
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
-          python-version: 3.x
+          python-version: "3.12"
           cache: "pip"
           cache-dependency-path: requirements-docs.txt
       - run: pip install -r requirements-docs.txt
-      - run: mkdocs gh-deploy --force
+      - name: Publish this release's site
+        run: |
+          version=$(cut -d. -f1,2 VERSION)
+          mike deploy --push --update-aliases "$version" latest
+          mike set-default --push latest

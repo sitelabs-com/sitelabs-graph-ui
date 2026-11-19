@@ -80,8 +80,10 @@ after an update; the tests draw and click in both views.
 These pages are in [docs/](index.md), and published to GitHub Pages at
 <https://sitelabs-com.github.io/sitelabs-graph-ui/> by
 [.github/workflows/mkdocs.yml](../.github/workflows/mkdocs.yml) on every push to `main` that changes
-them (`mkdocs gh-deploy` to the `gh-pages` branch). It is the same set-up as
-sitelabs-partitioned-graph's.
+them, and on every tag, with [mike](https://github.com/jimporter/mike): one site per release, named by
+`VERSION` (`/0.4/`, `/0.5/` ...), and `/latest/`, where the site's root sends browsers. A server links
+to the release it installs (its `MANIFEST.json` says which), so its links describe the page it
+serves. sitelabs-graph-security's site is set up the same way.
 
 * **Every page starts with a menu**, for reading them on GitHub, between ``. [tools/docs.py](../tools/docs.py) writes it, and `mkdocs.yml`'s `nav` (the site's
   sidebar), from its `GROUPS`; [docs/sitedocs.py](sitedocs.py) holds the sections.

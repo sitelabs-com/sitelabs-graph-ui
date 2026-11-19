@@ -10,6 +10,11 @@ extra_css:
   - stylesheets/extra.css
 hooks:
   - mkdocs_hooks.py # leaves each page's own menu block out of the site
+plugins:
+  - search
+  - mike: # one site per release (0.4/, 0.5/ ...) and latest/: docs/development.md#the-docs
+      version_selector: true
+      canonical_version: latest
 
 # Written by `python tools/docs.py` from GROUPS in tools/docs.py (the docs' own menu): edit those, not this.
 nav:

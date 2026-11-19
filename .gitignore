@@ -2,3 +2,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 site/
+
+# Editors and OS
+.DS_Store

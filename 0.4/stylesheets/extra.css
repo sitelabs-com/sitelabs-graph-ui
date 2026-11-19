@@ -1,0 +1,13 @@
+/* Overrides for the MkDocs readthedocs theme. */
+
+/* The theme keeps every table cell on one line (white-space: nowrap), so long text runs off the
+   side and is cut off. Let cells wrap. */
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+  white-space: normal;
+}
+
+/* The theme limits the page to 800px; give wide tables more room. */
+.wy-nav-content {
+  max-width: 1100px;
+}

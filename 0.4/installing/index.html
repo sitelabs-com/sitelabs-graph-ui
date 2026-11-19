@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sitelabs-com.github.io/sitelabs-graph-ui/latest/installing/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Installing into a project - Sitelabs-Graph-UI Technical Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installing into a project";
+        var mkdocs_page_input_path = "installing.md";
+        var mkdocs_page_url = "/sitelabs-graph-ui/latest/installing/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Sitelabs-Graph-UI Technical Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/">Features</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Using the page</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../using/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-views/">Graph views</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Serving it</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../serving/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../server-contract/">Server contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Installing into a project</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installing-and-checking">Installing and checking</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-manifest">The manifest</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#changing-the-page">Changing the page</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#where-the-copies-are">Where the copies are</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Tests</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-size/">How big a graph</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">All documents</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Sitelabs-Graph-UI Technical Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Serving it</li>
+      <li class="breadcrumb-item active">Installing into a project</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/edit/master/docs/installing.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installing-into-a-project">Installing into a project</h1>
+<blockquote>
+<p><strong>For:</strong> developers of a project that serves the page, and whoever releases it. <strong>You'll find:</strong>
+installing a copy, checking it, its manifest, and changing the page and releasing it.</p>
+</blockquote>
+<p>A project keeps <strong>a pinned copy of a release</strong> in its own repository, with a manifest of its version
+and files' hashes, which the project's tests check. It needs no submodule or package, and builds
+offline.</p>
+<h2 id="installing-and-checking">Installing and checking</h2>
+<p>From a checkout of this repository, beside the project's:</p>
+<pre><code class="language-bash">python install.py ../sitelabs-partitioned-graph/app/static/graph-ui          # replaces the copy
+python install.py --check ../sitelabs-partitioned-graph/app/static/graph-ui  # is it this release?
+</code></pre>
+<p><a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/install.py">install.py</a> needs the standard library only.</p>
+<ul>
+<li><strong>Installing</strong> replaces the target with a copy of <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/tree/main/ui">ui/</a>, and writes <code>MANIFEST.json</code>. It
+  refuses a folder that has files and no <code>MANIFEST.json</code>, so it never replaces what it didn't install.</li>
+<li><strong>Checking</strong> changes nothing. It says what differs (the version, or a file changed, added or
+  missing) and exits 1, or says the target is this release and exits 0.</li>
+</ul>
+<h2 id="the-manifest">The manifest</h2>
+<pre><code class="language-json">{
+ &quot;name&quot;: &quot;sitelabs-graph-ui&quot;,
+ &quot;version&quot;: &quot;0.3.0&quot;,
+ &quot;files&quot;: {
+  &quot;console.html&quot;: &quot;&lt;sha-256&gt;&quot;,
+  &quot;vendor/3d-force-graph.min.js&quot;: &quot;&lt;sha-256&gt;&quot;,
+  ...
+ }
+}
+</code></pre>
+<p>The version is <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/VERSION">VERSION</a>'s; the files are every file in the copy except the manifest. A
+project's tests compare the copy against it, so an edit made there fails them: <strong>don't edit the
+copies.</strong></p>
+<h2 id="changing-the-page">Changing the page</h2>
+<ol>
+<li>Change <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/ui/console.html">ui/console.html</a> here, and its tests (<a href="../testing/">Tests</a>).</li>
+<li>Raise <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/VERSION">VERSION</a>: the patch number for a fix, the minor for a feature, the major when a
+   server must change (<a href="../server-contract/">Server contract</a>).</li>
+<li>Commit, and tag the release (<code>v0.3.1</code>).</li>
+<li>
+<p>Install it into each project, and run each project's tests:</p>
+<p><code>bash
+python install.py ../sitelabs-partitioned-graph/app/static/graph-ui
+python install.py ../sitelabs-graph-database/app/static/graph-ui</code></p>
+</li>
+<li>
+<p>When the change needs something new of a server, add it to the <a href="../server-contract/">Server contract</a>
+   and to each server, and give it a <code>config.json</code> feature if not every server will have it.</p>
+</li>
+</ol>
+<h2 id="where-the-copies-are">Where the copies are</h2>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Copy</th>
+<th>Serves it in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-partitioned-graph">sitelabs-partitioned-graph</a></td>
+<td><code>app/static/graph-ui</code></td>
+<td><code>app/routers/console.py</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sitelabs-com/sitelabs-graph-database">sitelabs-graph-database</a></td>
+<td><code>app/static/graph-ui</code></td>
+<td><code>app/routers/console.py</code></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../server-contract/" class="btn btn-neutral float-left" title="Server contract"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../development/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../server-contract/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../development/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

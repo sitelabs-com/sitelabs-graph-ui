@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sitelabs-com.github.io/sitelabs-graph-ui/latest/graph-size/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>How big a graph - Sitelabs-Graph-UI Technical Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "How big a graph";
+        var mkdocs_page_input_path = "graph-size.md";
+        var mkdocs_page_url = "/sitelabs-graph-ui/latest/graph-size/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Sitelabs-Graph-UI Technical Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/">Features</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Using the page</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../using/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-views/">Graph views</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Serving it</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../serving/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../server-contract/">Server contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installing/">Installing into a project</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Tests</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">How big a graph</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-was-measured">What was measured</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-it-shows">What it shows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-pages-limits">The page's limits</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#measuring-your-own">Measuring your own</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">All documents</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Sitelabs-Graph-UI Technical Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Development</li>
+      <li class="breadcrumb-item active">How big a graph</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/edit/master/docs/graph-size.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-big-a-graph">How big a graph</h1>
+<blockquote>
+<p><strong>For:</strong> developers choosing the page's limits, and anyone wondering why a big answer isn't drawn.
+<strong>You'll find:</strong> what was measured, on what, what it shows, and how the page's limits follow from it.</p>
+</blockquote>
+<p><strong>What limits a graph is what you can read, long before what the browser can draw.</strong></p>
+<h2 id="what-was-measured">What was measured</h2>
+<p>On an Apple M2 laptop (Chrome, its GPU), on connected data of about 8 relationships per node, all of it
+drawn:</p>
+<table>
+<thead>
+<tr>
+<th>Nodes, relationships</th>
+<th>View</th>
+<th style="text-align: right;">Layout</th>
+<th style="text-align: right;">While laid out</th>
+<th style="text-align: right;">Turning or panning</th>
+<th>Can you read it?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>116, 794</td>
+<td>3D</td>
+<td style="text-align: right;">5.1 s</td>
+<td style="text-align: right;">60 fps</td>
+<td style="text-align: right;">60 fps</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>2D</td>
+<td style="text-align: right;">5.0 s</td>
+<td style="text-align: right;">60 fps</td>
+<td style="text-align: right;">61 fps</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>1,052, 8,032</td>
+<td>3D</td>
+<td style="text-align: right;">4.0 s</td>
+<td style="text-align: right;">31 fps</td>
+<td style="text-align: right;">48 fps</td>
+<td>The clusters only, as a hairball</td>
+</tr>
+<tr>
+<td></td>
+<td>2D</td>
+<td style="text-align: right;">2.0 s</td>
+<td style="text-align: right;">61 fps</td>
+<td style="text-align: right;">60 fps</td>
+<td>The clusters only, as a hairball</td>
+</tr>
+<tr>
+<td>5,212, 40,198</td>
+<td>3D</td>
+<td style="text-align: right;">15.4 s</td>
+<td style="text-align: right;">5 fps</td>
+<td style="text-align: right;">7 fps</td>
+<td>No: a solid disc</td>
+</tr>
+<tr>
+<td></td>
+<td>2D</td>
+<td style="text-align: right;">3.5 s</td>
+<td style="text-align: right;">36 fps</td>
+<td style="text-align: right;">55 fps</td>
+<td>No: a solid disc</td>
+</tr>
+</tbody>
+</table>
+<p><em>Layout</em> is the time until the layout settles (the page records it in the stage's <code>data-laid-out</code>).
+The two frame-rate columns are while it is settling and afterwards, moving round it.</p>
+<h2 id="what-it-shows">What it shows</h2>
+<ul>
+<li><strong>Around a hundred nodes</strong> read well in either view.</li>
+<li><strong>Around a thousand</strong> still draw smoothly, in 2D especially, but show only the clusters.</li>
+<li><strong>Five thousand</strong> draw (2D comfortably, 3D barely), and show nothing.</li>
+<li><strong>Focused answers read well at any size of graph.</strong> It is the size of the answer that matters, not
+  of the graph.</li>
+</ul>
+<h2 id="the-pages-limits">The page's limits</h2>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes drawn, by default</td>
+<td>1,000</td>
+<td>Where a picture stops showing more than clusters</td>
+</tr>
+<tr>
+<td>"Hard to read" advice</td>
+<td>over 500 nodes</td>
+<td>Before the hairball</td>
+</tr>
+<tr>
+<td>"3D is slow" advice</td>
+<td>over 2,000 nodes in 3D</td>
+<td>Between 31 and 5 fps</td>
+</tr>
+<tr>
+<td>Fewer details drawn</td>
+<td>over 1,000 nodes</td>
+<td>No arrows, shorter layout, coarser 3D</td>
+</tr>
+<tr>
+<td>Expanding</td>
+<td>100 relationships a node</td>
+<td>One step at a time stays readable</td>
+</tr>
+</tbody>
+</table>
+<p>They are constants in <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/blob/main/ui/console.html">ui/console.html</a> (<code>describe()</code>, <code>draw()</code> and <code>EXPAND</code>).</p>
+<p>So <strong>expanding</strong> is the way into a big graph: start from one node and grow it
+(<a href="../graph-views/#expanding-a-node">Expanding a node</a>). Libraries that draw hundreds of thousands of
+points (cosmos.gl, for example) aren't worth adding for that reason.</p>
+<h2 id="measuring-your-own">Measuring your own</h2>
+<p>Draw an answer of the size you care about, in each view, and read:</p>
+<ul>
+<li>the layout time, from the line above the graph ("Laid out in N s"), or
+  <code>document.getElementById('stage').dataset.laidOut</code> in the browser's console;</li>
+<li>the frame rate, from the browser's performance tools (in Chrome, <strong>Rendering → Frame rendering
+  stats</strong>), while it settles and while you turn or pan it.</li>
+</ul>
+<p>Say the machine, browser and data when adding a row to the table above.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../testing/" class="btn btn-neutral float-left" title="Tests"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../security/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../testing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../security/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

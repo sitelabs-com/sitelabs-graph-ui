@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sitelabs-com.github.io/sitelabs-graph-ui/latest/server-contract/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Server contract - Sitelabs-Graph-UI Technical Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Server contract";
+        var mkdocs_page_input_path = "server-contract.md";
+        var mkdocs_page_url = "/sitelabs-graph-ui/latest/server-contract/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Sitelabs-Graph-UI Technical Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/">Features</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Using the page</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../using/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-views/">Graph views</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Serving it</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../serving/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Server contract</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#always">Always</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#consoleconfigjson">/console/config.json</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post-opencypher">POST /opencypher</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what-the-pages-own-queries-need">What the page's own queries need</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#optional-features">Optional features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#schema">schema</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pages">pages</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#profile">profile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#past">past</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cancel">cancel</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#login">login</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installing/">Installing into a project</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Tests</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../graph-size/">How big a graph</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">All documents</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Sitelabs-Graph-UI Technical Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Serving it</li>
+      <li class="breadcrumb-item active">Server contract</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui/edit/master/docs/server-contract.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="server-contract">Server contract</h1>
+<blockquote>
+<p><strong>For:</strong> developers of a server that serves the page. <strong>You'll find:</strong> every path the page calls,
+every field it sends and reads, and what each optional feature adds.</p>
+</blockquote>
+<p>The page calls only its own server (<code>connect-src 'self'</code>), at these paths. Every call sends
+<code>Content-Type: application/json</code>, and <code>X-API-Key</code> when a key has been typed. An answer that isn't
+2xx is shown as <code>&lt;status&gt;: &lt;error&gt;</code>, from its <code>error</code> field, or its whole body when that isn't JSON.</p>
+<h2 id="always">Always</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /console</code></td>
+<td><code>console.html</code>, with the <a href="../security/#the-content-security-policy">content security policy</a>. Needs no key: the page asks for one</td>
+</tr>
+<tr>
+<td><code>GET /console/config.json</code></td>
+<td>What the server has (<a href="#consoleconfigjson">below</a>)</td>
+</tr>
+<tr>
+<td><code>GET /console/vendor/&lt;file&gt;</code></td>
+<td><code>3d-force-graph.min.js</code> and <code>force-graph.min.js</code>, and no other file. Called the first time a graph tab opens</td>
+</tr>
+<tr>
+<td><code>POST /opencypher</code></td>
+<td>Queries (<a href="#post-opencypher">below</a>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="consoleconfigjson"><code>/console/config.json</code></h3>
+<pre><code class="language-json">{&quot;title&quot;: &quot;Graph console&quot;, &quot;schema&quot;: true, &quot;pages&quot;: true, &quot;profile&quot;: true, &quot;past&quot;: true, &quot;cancel&quot;: true,
+ &quot;login&quot;: {&quot;sso&quot;: true, &quot;keys&quot;: true}}
+</code></pre>
+<p><code>title</code> names the page and its tab. Each other field turns on a <a href="#optional-features">feature</a>; a
+missing one is off. When the file can't be fetched, every feature is off and the title is
+"Graph console".</p>
+<h3 id="post-opencypher"><code>POST /opencypher</code></h3>
+<p>The request:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>When</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td>Always</td>
+<td>The query text; with <strong>Explain</strong>, <code>EXPLAIN</code> and the query</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>Always</td>
+<td>The parameters, as a JSON object (<code>{}</code> when there are none)</td>
+</tr>
+<tr>
+<td><code>read_only</code></td>
+<td>Always</td>
+<td><code>true</code>. The server must refuse a write, with a 400</td>
+</tr>
+<tr>
+<td><code>page_size</code></td>
+<td>With <code>pages</code></td>
+<td><code>500</code></td>
+</tr>
+<tr>
+<td><code>profile</code></td>
+<td>With <code>profile</code>, on <strong>Profile</strong></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>at_load</code></td>
+<td>With <code>past</code>, when a load is given</td>
+<td>The load number</td>
+</tr>
+</tbody>
+</table>
+<p>Headers: <code>X-API-Key</code> (when typed), and <code>X-Request-ID: console-&lt;8 hex digits&gt;</code> on each query from the
+query box, for <code>cancel</code>.</p>
+<p>The answer:</p>
+<pre><code class="language-json">{&quot;columns&quot;: [&quot;a&quot;, &quot;r&quot;],
+ &quot;rows&quot;: [{&quot;a&quot;: {&quot;id&quot;: &quot;1&quot;, &quot;labels&quot;: [&quot;Person&quot;], &quot;properties&quot;: {&quot;name&quot;: &quot;Ann&quot;}},
+           &quot;r&quot;: {&quot;id&quot;: &quot;7&quot;, &quot;type&quot;: &quot;KNOWS&quot;, &quot;start&quot;: &quot;1&quot;, &quot;end&quot;: &quot;2&quot;, &quot;properties&quot;: {}}}],
+ &quot;stats&quot;: {&quot;rounds&quot;: 2, &quot;calls&quot;: 4}}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>columns</code></td>
+<td>The column names, in order</td>
+</tr>
+<tr>
+<td><code>rows</code></td>
+<td>One object a row, keyed by column</td>
+</tr>
+<tr>
+<td><code>stats</code></td>
+<td>Optional. With <code>rounds</code> and <code>calls</code>, the status line shows them</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td>With <code>pages</code>: the next page's cursor, or absent/null on the last</td>
+</tr>
+<tr>
+<td><code>profile</code></td>
+<td>With <code>profile</code>, when asked for (<a href="#profile">below</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The values the page draws and shows specially:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A node</td>
+<td><code>{"id", "labels", "properties"}</code></td>
+</tr>
+<tr>
+<td>A relationship</td>
+<td><code>{"id", "type", "start", "end", "properties"}</code>: <code>start</code> and <code>end</code> are node ids</td>
+</tr>
+<tr>
+<td>A path</td>
+<td><code>{"nodes", "relationships"}</code>: lists of the above</td>
+</tr>
+</tbody>
+</table>
+<p>Ids may be strings or numbers, but must be the same for a node and the relationships that refer to it,
+and must not be <code>0</code> or <code>""</code>: the graph views skip a value whose <code>id</code> is empty or zero.</p>
+<p>An error: a non-2xx status and <code>{"error": "..."}</code>. When the message holds <code>offset N</code> (a character offset
+into the query), the page marks the query there.</p>
+<h3 id="what-the-pages-own-queries-need">What the page's own queries need</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CALL db.labels() YIELD label RETURN label</code></td>
+<td>Without <code>schema</code>: the labels, a row each</td>
+</tr>
+<tr>
+<td><code>CALL db.relationshipTypes() YIELD relationshipType RETURN relationshipType</code></td>
+<td>Without <code>schema</code>: the relationship types</td>
+</tr>
+<tr>
+<td><code>MATCH (n:`L`) RETURN n LIMIT 25</code></td>
+<td>Clicking a label or node type</td>
+</tr>
+<tr>
+<td><code>MATCH (a)-[r:`T`]-&gt;(b) RETURN a, r, b LIMIT 25</code></td>
+<td>Clicking a relationship type</td>
+</tr>
+<tr>
+<td><code>MATCH (a)-[r]-(b) WHERE id(a) = $id RETURN a, r, b LIMIT 100</code></td>
+<td>Expanding; <code>id()</code> must take the node's <code>id</code> as the answer gives it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-features">Optional features</h2>
+<h3 id="schema"><code>schema</code></h3>
+<p><code>GET /schema</code> answers:</p>
+<pre><code class="language-json">{&quot;load&quot;: 12, &quot;nodes&quot;: 1000, &quot;relationships&quot;: 8000,
+ &quot;labels&quot;: [{&quot;name&quot;: &quot;Person&quot;, &quot;count&quot;: 1000}],
+ &quot;node_types&quot;: [{&quot;name&quot;: &quot;Person&quot;, &quot;count&quot;: 1000, &quot;properties&quot;: [{&quot;name&quot;: &quot;name&quot;, &quot;type&quot;: &quot;str&quot;}]}],
+ &quot;relationship_types&quot;: [{&quot;name&quot;: &quot;KNOWS&quot;, &quot;count&quot;: 8000, &quot;properties&quot;: []}]}
+</code></pre>
+<h3 id="pages"><code>pages</code></h3>
+<p><code>page_size</code> in the request, <code>cursor</code> in the answer, and <code>GET /opencypher/cursors/{cursor}</code> answering
+<code>{"rows", "cursor"}</code> for the next page. <strong>Fetch more rows to draw</strong> adds <code>?page_size=5000</code>.</p>
+<h3 id="profile"><code>profile</code></h3>
+<p><code>"profile": true</code> in the request; the answer's <code>profile</code>:</p>
+<pre><code class="language-json">{&quot;seconds&quot;: {&quot;total&quot;: 0.012, &quot;partitions&quot;: 0.009, &quot;coordinator&quot;: 0.003},
+ &quot;plan&quot;: [&quot;NodeScan(p:Person)&quot;, &quot;Expand(p)-[:KNOWS]-&gt;(q)&quot;],
+ &quot;rounds&quot;: [{&quot;round&quot;: 1, &quot;call&quot;: [&quot;scan&quot;], &quot;partitions&quot;: [0, 1], &quot;sent&quot;: 0, &quot;received&quot;: 120, &quot;seconds&quot;: 0.004}]}
+</code></pre>
+<p>The shape is sitelabs-partitioned-graph's (the plan's lines above are only an illustration): a server
+without partitions would turn this off.</p>
+<h3 id="past"><code>past</code></h3>
+<p><code>at_load</code> in the request: read the graph as it was after that load.</p>
+<h3 id="cancel"><code>cancel</code></h3>
+<p><code>DELETE /queries/{id}</code>, with the <code>X-Request-ID</code> the query was sent with. Whatever the query's own
+request then answers (usually an error) is shown as usual; an error from the <code>DELETE</code> is shown too.</p>
+<h3 id="login"><code>login</code></h3>
+<p>An object, <code>{"sso": true, "keys": true}</code>: the page can sign in, and stay signed in in this browser,
+with a session cookie the server sets. The page never sees the cookie or a token.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /session</code></td>
+<td>Who is signed in: <code>{"signed_in": true, "name", "role"}</code>, or <code>{"signed_in": false}</code> (200 either way, so the browser logs no error)</td>
+</tr>
+<tr>
+<td><code>POST /session</code></td>
+<td>With <code>keys</code>, on <strong>Sign in with the key</strong>: a session for the key in <code>X-API-Key</code>, set as a cookie</td>
+</tr>
+<tr>
+<td><code>DELETE /session</code></td>
+<td><strong>Sign out</strong>: the cookie dropped</td>
+</tr>
+<tr>
+<td><code>GET /console/sso/start?next=&lt;path&gt;</code></td>
+<td>With <code>sso</code>, on <strong>Sign in</strong>: the server sends the browser to the identity provider, and back to the console signed in (or to <code>next</code>, a path on the server). A failure comes back as <code>/console?signin_error=&lt;why&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>With a session, the page sends no key: queries go with the cookie. <code>/console?next=&lt;path&gt;</code> returns to
+<code>next</code> once signed in: a server can send a browser there from a page that needs a session, such as
+its dashboards.</p>
+<p>sitelabs-graph-database turns every feature off; sitelabs-partitioned-graph turns every one on, and <code>login</code>
+when it has keys or an identity provider.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../serving/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installing/" class="btn btn-neutral float-right" title="Installing into a project">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/sitelabs-com/sitelabs-graph-ui" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../serving/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../installing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
